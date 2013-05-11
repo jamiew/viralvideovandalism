@@ -8,16 +8,22 @@ if [ -z $input ]; then
   exit 1
 fi
 
+filename="${input%.*}"
+ext="${input#*.}"
+
 # rip video from youtube
-file="output"
-youtube-dl "$input" -o "$file"
+#youtube-dl "$input" -o "$file"
+#mediainfo "$file"
 
-# make sure it's ok
-mediainfo "$file"
+# pick the right katsutag based on input file size dimensions
+# 1080p, 720p, 480p best-fit
+# TODO
+quality="1080p"
+tag="katsu_watermarktag_${quality}.mov"
 
-# add watermark to the video
-output="${file}_tagged.mov"
-ffmpeg -i $file -vf "movie=KATSUskull_WaterMark.mov [ovl]; [in][ovl] overlay" "$output"
+# overlay watermark onto the video
+output="${filename}_tagged.${ext}"
+ffmpeg -y -i $input -vf "movie=$tag, scale=720:540 [ovl]; [in][ovl] overlay" "$output"
 mediainfo "$output"
 
 # upload back to youtube
