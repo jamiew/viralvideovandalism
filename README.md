@@ -2,5 +2,5 @@ Work In Progress
 
 [FAT LAB](http://fffff.at)
 
-![Mockup](http://jamiedubs.com/screenshots/viralvideovandalism-20130512-193741.jpg)
+![Mockup](http://jamiedubs.com/screenshots/viral_video_vandalism_diagram-20130513-103302.jpg)
 
